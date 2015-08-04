@@ -1,0 +1,16 @@
+services:
+    guzzlehttp.client:
+        class:  GuzzleHttp\Client
+
+    eovz_microsoft_translator_api.response:
+        class:        Eovz\MicrosoftTranslatorApiClientBundle\Service\Response  
+        public:       false
+
+    eovz_microsoft_translator_api.transport:
+        class:        Eovz\MicrosoftTranslatorApiClientBundle\Service\Transport
+        arguments:    ["@guzzlehttp.client", "@service_container"]  
+        public:       false
+        
+    eovz_microsoft_translator_api.client:
+        class:        Eovz\MicrosoftTranslatorApiClientBundle\Service\Client
+        arguments:    ["@eovz_microsoft_translator_api.transport", "@eovz_microsoft_translator_api.response"]        
